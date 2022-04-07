@@ -1,17 +1,27 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 31
+
+    signingConfigs {
+        debug {
+            storeFile file("../sign/space365.jks")
+            storePassword '123456'
+            keyAlias 'space365'
+            keyPassword '123456'
+        }
+    }
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 29
+        minSdkVersion 25
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
     }
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

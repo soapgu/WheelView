@@ -154,23 +154,33 @@ public class WheelView<T> extends ListView implements IWheelView<T> {
 
     public WheelView(Context context) {
         super(context);
-        init();
+        //init();
     }
 
+
+    /*
     public WheelView(Context context, WheelViewStyle style) {
         super(context);
         setStyle(style);
-        init();
+        //init();
     }
+    */
 
     public WheelView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init();
+        //super(context, attrs);
+        //init();
+        this(context,attrs, 0);
     }
 
     public WheelView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        init();
+        //super(context, attrs, defStyleAttr);
+        //init();
+        this(context, attrs, defStyleAttr, 0);
+    }
+
+    public WheelView(Context context, AttributeSet attrs, int defStyleAttr , int defStyleRes) {
+        super(context, attrs, defStyleAttr,defStyleRes);
+        //init();
     }
 
     /**
@@ -190,6 +200,12 @@ public class WheelView<T> extends ListView implements IWheelView<T> {
      */
     public void setOnWheelItemClickListener(OnWheelItemClickListener<T> onWheelItemClickListener) {
         mOnWheelItemClickListener = onWheelItemClickListener;
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.init();
     }
 
     /**
@@ -520,6 +536,14 @@ public class WheelView<T> extends ListView implements IWheelView<T> {
         if (mWheelAdapter != null) {
             mWheelAdapter.setData(list);
         }
+    }
+
+    /**
+     * 获取滚轮数据
+     * @return list
+     */
+    public List<T> getWheelData() {
+        return mList;
     }
 
     /**
